@@ -1,4 +1,6 @@
 Pour comiter dans github:
 Voir https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/
 
+
+git commit -m "comment blbla"
 git push origin --force
