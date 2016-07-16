@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<statistiquesLexique>
+    <UL>
+        <StatItem>
+            <date>2016-07-12T23:43:56.557+02:00</date>
+            <succes>false</succes>
+        </StatItem>
+        <Id>aaa</Id>
+    </UL>
+    <UL>
+        <Id>bbb</Id>
+    </UL>
+    <UL>
+        <StatItem>
+            <date>2016-07-14T10:17:05.872+02:00</date>
+            <succes>false</succes>
+        </StatItem>
+        <StatItem>
+            <date>2016-07-14T10:17:13.739+02:00</date>
+            <succes>false</succes>
+        </StatItem>
+        <Id>ccc</Id>
+    </UL>
+    <UL>
+        <Id>zzzz</Id>
+    </UL>
+    <UL>
+        <Id>a</Id>
+    </UL>
+</statistiquesLexique>
