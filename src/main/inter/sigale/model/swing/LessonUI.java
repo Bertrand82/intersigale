@@ -28,9 +28,11 @@ public class LessonUI  {
 	JLabel labelStat = new JLabel("");
 	JButton buttonValidResult = new JButton("OK");
 	JButton buttonNext = new JButton("Next");
-	JTextField textFieldResponse = new JTextField(20);
+	JTextField textFieldResponse = new JTextField(30);
 	JLabel labelCorrection = new JLabel(STR_VIDE);
+	StatistiquePanel statistiquePanel = new StatistiquePanel();
 	public LessonUI() {
+		labelCorrection.putClientProperty("JComponent.sizeVariant", "large");
 	    LexiqueFactory.getInstance().getLexique();
 		buttonValidResult.addActionListener(new ActionListener() {			
 			@Override
@@ -71,6 +73,7 @@ public class LessonUI  {
 		panelPhrases.add(panelCorrection);
 		panelPhrases.add(panelButtons);
 		panelPhrases.add(labelStat);
+		panelPhrases.add(statistiquePanel);
 		
 		panelGlobal.add(panelPhrases,BorderLayout.NORTH);
 		panelGlobal.add(new JLabel(),BorderLayout.CENTER);

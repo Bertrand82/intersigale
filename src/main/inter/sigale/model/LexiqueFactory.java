@@ -8,6 +8,7 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
 import inter.sigale.UtilInterSigale;
+import inter.sigale.model.statistic.StatistiquesLexiqueFactory;
 
 public class LexiqueFactory {
 	
@@ -30,16 +31,17 @@ public class LexiqueFactory {
 	}
 
 	private  void initLexique() {
-		this.lexique = getLexiqueDefault();
+		this.lexique = null;
 		String lexiqueName = getLexiqueName();
-		String name = System.getProperty(KEY_LexiqueName);
-		System.out.println("Lexique name :"+name);
-		File fileLexique = getFileLexique(name);
 		
+		
+		File fileLexique = getFileLexique(lexiqueName);
+		System.out.println("Lexique name :"+lexiqueName+"   "+fileLexique);
 		if (fileLexique== null){
-			return ;
+			lexique = getLexiqueDefault();
 		}else {
 			System.out.println("file "+fileLexique.getAbsolutePath()+"  exists: "+fileLexique.exists());
+			
 			if(fileLexique.exists()){
 				try {
 					chooseLexique(fileLexique);
@@ -81,8 +83,13 @@ public class LexiqueFactory {
 		Object o = getXmlUnMarshaller().unmarshal(is);
 		this.lexique = (Lexique) o;
 		System.out.println("lexique : "+lexique);
+		fetchStatistique();
 	}
 	
+	private void fetchStatistique() {
+		StatistiquesLexiqueFactory.getInstance().fetchStatistique();
+		
+	}
 	private Marshaller getXmlMarshaller() throws Exception {
 		if (marshaller == null){
 			JAXBContext jaxbContext = JAXBContext.newInstance(Lexique.class);
@@ -92,7 +99,11 @@ public class LexiqueFactory {
 		}
 		return marshaller;
 	}
-	
+	/**
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
 	private Unmarshaller getXmlUnMarshaller() throws Exception {
 		if (unmarshaler == null){
 			JAXBContext jaxbContext = JAXBContext.newInstance(Lexique.class);
@@ -133,6 +144,10 @@ public class LexiqueFactory {
 		File f = getFileLexique(name);
 		this.saveLexique(f);
 	}
+	/**
+	 * 
+	 * @param item
+	 */
 	public void saveItem(UniteLexicale item) {
 		try {
 			this.saveLexique();

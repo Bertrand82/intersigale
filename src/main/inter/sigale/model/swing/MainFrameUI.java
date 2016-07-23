@@ -1,8 +1,17 @@
 package inter.sigale.model.swing;
 
+import java.awt.Font;
+import java.util.Enumeration;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
+import javax.swing.SwingUtilities;
+import javax.swing.UIDefaults;
+import javax.swing.UIManager;
+import javax.swing.plaf.FontUIResource;
+
+import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
 
 import inter.sigale.model.statistic.StatistiquesLexiqueFactory;
 
@@ -19,6 +28,7 @@ public class MainFrameUI {
 	DebugUI debugUI = new DebugUI();
 
 	public MainFrameUI() {
+		setFontSize();
 		tabbedPane.addTab("Leçon", lessonUI.getPanelGlobal());
 		tabbedPane.addTab("Admin", adminUI.getPanelGlobal());
 		tabbedPane.addTab("Edit", itemEditUI.getPanelGlobal());
@@ -35,7 +45,20 @@ public class MainFrameUI {
 			}
 		});
 		frame.add(tabbedPane);
+		frame.setTitle("InterSigale");
+		SwingUtilities.updateComponentTreeUI(frame);
 		frame.pack();
 		frame.setVisible(true);
 	}
+
+	
+	
+	private  void setFontSize() {
+		UIManager.put("Label.font",( (Font) UIManager.getFont("Label.font")).deriveFont(20.0f));
+		UIManager.put("TextField.font",( (Font) UIManager.getFont("TextField.font")).deriveFont(20.0f));
+		UIManager.put("Button.font",( (Font) UIManager.getFont("Button.font")).deriveFont(20.0f));
+		UIManager.put("TabbedPane.font",( (Font) UIManager.getFont("Button.font")).deriveFont(20.0f));
+		SwingUtilities.updateComponentTreeUI(frame);
+	}
+
 }

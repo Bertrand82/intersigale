@@ -43,7 +43,7 @@ public class DebugUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("ReadStatistice action");
-				StatistiquesLexiqueFactory.getInstance().readStatisticCurrentLexique();
+				StatistiquesLexiqueFactory.getInstance().fetchStatistiqueLocalInFile();
 			}
 		});
 		buttonSaveStatistic.addActionListener(new ActionListener() {

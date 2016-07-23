@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Phrase {
 	String text;
-	List<Audio> listAudio = new ArrayList<>();
+	List<Audio> listAudio = new ArrayList<Audio>();
 	
 	public Phrase() {
 		super();

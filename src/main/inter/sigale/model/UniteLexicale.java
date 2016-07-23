@@ -15,7 +15,7 @@ public class UniteLexicale {
 
 	private Phrase phrase_0 ;
 	private Phrase phrase_1;
-	private List<Vote> listVotes = new ArrayList<>();
+	private List<Vote> listVotes = new ArrayList<Vote>();
 	private StatistiquesUL statistique = new StatistiquesUL();
 	
 	
@@ -106,7 +106,7 @@ public class UniteLexicale {
 
 
 	/**
-	 * Id est la phrase a traduire. Ce n'est pas forcement une bonne idée.
+	 * Id est la phrase a traduire. Ce n'est pas forcement une bonne idï¿½e.
 	 * @return
 	 */
 	public String getId() {		

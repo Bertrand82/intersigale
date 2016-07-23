@@ -23,7 +23,7 @@ public class Lexique implements Serializable {
 	
 	private String name ="intersigale-default";
 	
-	private List<UniteLexicale> listUniteLexicale = new ArrayList<>();
+	private List<UniteLexicale> listUniteLexicale = new ArrayList<UniteLexicale>();
 	
 	int iCourrante = 0;
 	
@@ -125,8 +125,6 @@ public class Lexique implements Serializable {
 	public void setiCourrante(int iCourrante) {
 		this.iCourrante = iCourrante;
 	}
-
-	
 
 	
 }

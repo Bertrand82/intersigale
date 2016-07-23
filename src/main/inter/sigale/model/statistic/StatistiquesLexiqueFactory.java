@@ -23,7 +23,7 @@ public class StatistiquesLexiqueFactory {
 	}
 	
 	public static synchronized StatistiquesLexique getStatistiquesLexique() {
-		
+		System.out.println("StatistiquesLexique getStatistiquesLexique ");
 		StatistiquesLexique statistiquesLexique = new StatistiquesLexique();
 		Lexique lexique = LexiqueFactory.getInstance().getLexique();
 		for(UniteLexicale ul : lexique.getListUniteLexicale()) {
@@ -33,7 +33,7 @@ public class StatistiquesLexiqueFactory {
 	}
 
 	public static void setStatistiqueLexique(StatistiquesLexique statistiqueLexique) {
-		System.out.println("setStatistiqueLexique No Implemented yet");
+		System.out.println("setStatistiqueLexique ");
 		Lexique lexique = LexiqueFactory.getInstance().getLexique();
 		for(UniteLexicale ul : lexique.getListUniteLexicale()) {
 			String id  = ul.getId();
@@ -48,8 +48,11 @@ public class StatistiquesLexiqueFactory {
 	}
 
 	public static File getFileStatistique() {
+		
 		Lexique lexique= LexiqueFactory.getInstance().getLexique();
-		return getFileStatistiqueFromName(lexique.getName());
+		File f =  getFileStatistiqueFromName(lexique.getName());
+		System.out.println("getFileStatistique "+f.getAbsolutePath()+" exists :"+f.exists());
+		return f;
 	}
 	
 	private Marshaller marshaller;
@@ -96,8 +99,10 @@ public class StatistiquesLexiqueFactory {
 		System.out.println("saveStatistic done " + selectedFile.getAbsolutePath());
 
 	}
-	
-	public void readStatisticCurrentLexique() {
+	public void fetchStatistique() {
+		fetchStatistiqueLocalInFile();
+	}
+	public void fetchStatistiqueLocalInFile() {
 		File file = StatistiquesLexiqueFactory.getFileStatistique();
 		System.out.println("readStatistic "+file.getAbsolutePath()+" exists "+file.exists());
 		try {
@@ -117,4 +122,6 @@ public class StatistiquesLexiqueFactory {
 		}
 
 	}
+
+	
 }

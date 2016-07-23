@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 @XmlSeeAlso({StatistiquesUL.class})
 public class StatistiquesLexique {
 
-	private List<StatistiquesUL> listStatistiqueUL = new ArrayList<>();
+	private List<StatistiquesUL> listStatistiqueUL = new ArrayList<StatistiquesUL>();
 
 	public List<StatistiquesUL> getListStatistiqueUL() {
 		return listStatistiqueUL;

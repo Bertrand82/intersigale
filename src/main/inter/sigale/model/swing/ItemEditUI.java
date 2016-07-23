@@ -31,9 +31,12 @@ public class ItemEditUI {
 	JButton buttonPrevious = new JButton("<");
 	JButton buttonNew = new JButton("New");
 	JLabel labelLog = new JLabel("");
+	JTextField labelStatistic = new JTextField(20);
 
 	public ItemEditUI() {
+		
 		super();
+		labelStatistic.setEditable(false);
 		this.panelGlobal.addComponentListener(new ComponentListener() {
 			
 			@Override
@@ -95,7 +98,9 @@ public class ItemEditUI {
 		panel.add(textField_1);
 		panel.add(new JLabel(""));
 		panel.add(buttonRecord);
-
+		panel.add(new JLabel("Stat:"));
+		panel.add(labelStatistic);
+		
 		JPanel panelNextPrevious = new JPanel();
 		panelNextPrevious.setLayout(new BoxLayout(panelNextPrevious, BoxLayout.LINE_AXIS));
 		panelNextPrevious.add(buttonPrevious);
@@ -138,9 +143,11 @@ public class ItemEditUI {
 		if (this.item == null) {
 			this.textField_0.setText("");
 			this.textField_1.setText("");
+			this.labelStatistic.setText("");
 		} else {
 			this.textField_0.setText(item.getPhrase_0().getText());
 			this.textField_1.setText(item.getPhrase_1().getText());
+			this.labelStatistic.setText(item.getStatistiqueResume());
 		}
 	}
 
