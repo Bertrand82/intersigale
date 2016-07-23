@@ -1,6 +1,14 @@
+github : 
+https://github.com/Bertrand82/intersigale
+
+
 Pour comiter dans github:
 Voir https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/
 
-git add  reame
+git add  readme
 git commit -m "comment blabla"
 git push origin --force
+
+
+Pour avoir la fenetre de commande: 
+Git Bash
