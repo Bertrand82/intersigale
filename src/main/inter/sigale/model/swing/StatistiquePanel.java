@@ -164,7 +164,13 @@ public class StatistiquePanel extends JPanel {
 				for (StatistiquesItem statistiquesItem : list) {
 					long deltaTime = statistiquesItem.getDate().getTime() - StatistiquePanel.this.date_0.getTime();
 					int timeW = (int) ((deltaTime * w) / duree);
-					g.drawLine(timeW, h_2, timeW, h);
+					int hStat;
+					if(statistiquesItem.isSucces()){
+						hStat=0;
+					}else {
+						hStat=h;
+					}
+					g.drawLine(timeW, h_2, timeW, hStat);
 				}
 			}
 
