@@ -15,25 +15,26 @@ import inter.sigale.model.Lexique;
 import inter.sigale.model.LexiqueFactory;
 import inter.sigale.model.UniteLexicale;
 
-public class LessonUI  {
+public class LessonUI implements ISwingable  {
 	
-	Color colorNeutre = Color.YELLOW;
-	Color colorOK = Color.GREEN;
-	Color colorKO = new Color(0xFF, 0x10,0x19);
+	Color colorNeutre = ConstantesSwing.color_start;
+	Color colorOK =  ConstantesSwing.color_ok;
+	Color colorKO = ConstantesSwing.color_err;;
 	private static String STR_VIDE= " ";
 	
 	JPanel panelGlobal = new JPanel(new BorderLayout());
 	JPanel panelPhrases = new JPanel();
+	JPanel panelButtons = new JPanel();
+	JPanel panelCorrection = new JPanel(new BorderLayout());
 	JLabel labelRequest = new JLabel("Request");
-	JLabel labelStat = new JLabel("");
+	JLabel labelStat = new JLabel("xx");
 	JButton buttonValidResult = new JButton("OK");
 	JButton buttonNext = new JButton("Next");
 	JTextField textFieldResponse = new JTextField(30);
-	JLabel labelCorrection = new JLabel(STR_VIDE);
+	JLabel labelCorrection = new JLabel(" ");
 	StatistiquePanel statistiquePanel = new StatistiquePanel();
 	public LessonUI() {
-		labelCorrection.putClientProperty("JComponent.sizeVariant", "large");
-	    LexiqueFactory.getInstance().getLexique();
+		 LexiqueFactory.getInstance().getLexique();
 		buttonValidResult.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -58,10 +59,10 @@ public class LessonUI  {
 				validResult();
 			}
 		});
-		JPanel panelButtons = new JPanel();
+		
 		panelButtons.add(buttonValidResult);
 		panelButtons.add(buttonNext);
-		JPanel panelCorrection = new JPanel(new BorderLayout());
+		
 		panelCorrection.add(labelCorrection,BorderLayout.WEST);
 		panelCorrection.add(new JLabel(),BorderLayout.CENTER);
 		labelStat.setBackground(colorNeutre);
@@ -91,6 +92,7 @@ public class LessonUI  {
 		UniteLexicale ulCourrante =  getLexique().getUniteLexicaleCourante();
 		boolean ok = ulCourrante.resultProcess(this.textFieldResponse.getText());
 		String stat = ulCourrante.getStatistiqueResume();
+		this.statistiquePanel.updateStat(ulCourrante);
 		System.out.println("ValidResult "+ok);
 		//this.textFieldResponse.setText(text);
 		setButtonsEtat(false);
@@ -113,6 +115,7 @@ public class LessonUI  {
 		displayResult(null," ");
 		this.textFieldResponse.setText("");
 		setButtonsEtat(true);
+		this.statistiquePanel.updateStat(null);
 	}
 	
 	private void setButtonsEtat(boolean b){
@@ -143,5 +146,14 @@ public class LessonUI  {
 	
 	private Lexique getLexique() {
 		return  LexiqueFactory.getInstance().getLexique();
+	}
+	
+	@Override
+	public void setBackground(Color bg, Color bg2) {
+		this.panelGlobal.setBackground(bg);
+		this.panelButtons.setBackground(bg);
+		this.panelCorrection.setBackground(bg);
+		this.panelPhrases.setBackground(bg);
+		this.statistiquePanel.setBackground(bg);
 	}
 }

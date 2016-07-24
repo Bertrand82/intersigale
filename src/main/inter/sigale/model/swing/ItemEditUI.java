@@ -1,6 +1,7 @@
 package inter.sigale.model.swing;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
@@ -18,12 +19,13 @@ import inter.sigale.model.LexiqueFactory;
 import inter.sigale.model.Phrase;
 import inter.sigale.model.UniteLexicale;
 
-public class ItemEditUI {
+public class ItemEditUI implements ISwingable {
 
 	int i_deprecated = 0;
 
 	UniteLexicale item;
 	JPanel panelGlobal = new JPanel();
+	JPanel panelAux = new JPanel();
 	JTextField textField_0 = new JTextField(20);
 	JTextField textField_1 = new JTextField(20);
 	JButton buttonRecord = new JButton("Record");
@@ -90,16 +92,16 @@ public class ItemEditUI {
 				record();
 			}
 		});
-		JPanel panel = new JPanel();
-		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
-		panel.add(new JLabel("Question"));
-		panel.add(textField_0);
-		panel.add(new JLabel("Answer"));
-		panel.add(textField_1);
-		panel.add(new JLabel(""));
-		panel.add(buttonRecord);
-		panel.add(new JLabel("Stat:"));
-		panel.add(labelStatistic);
+		
+		panelAux.setLayout(new BoxLayout(panelAux, BoxLayout.PAGE_AXIS));
+		panelAux.add(new JLabel("Question"));
+		panelAux.add(textField_0);
+		panelAux.add(new JLabel("Answer"));
+		panelAux.add(textField_1);
+		panelAux.add(new JLabel(""));
+		panelAux.add(buttonRecord);
+		panelAux.add(new JLabel("Stat:"));
+		panelAux.add(labelStatistic);
 		
 		JPanel panelNextPrevious = new JPanel();
 		panelNextPrevious.setLayout(new BoxLayout(panelNextPrevious, BoxLayout.LINE_AXIS));
@@ -107,10 +109,10 @@ public class ItemEditUI {
 		panelNextPrevious.add(new JLabel(" "));
 		panelNextPrevious.add(buttonNext);
 		panelNextPrevious.add(buttonNew);
-		panel.add(panelNextPrevious);
-		panel.add(labelLog);
+		panelAux.add(panelNextPrevious);
+		panelAux.add(labelLog);
 		panelGlobal.setLayout(new BoxLayout(panelGlobal, BoxLayout.PAGE_AXIS));
-		panelGlobal.add(panel);
+		panelGlobal.add(panelAux);
 		displayLog();
 	}
 
@@ -209,5 +211,10 @@ public class ItemEditUI {
 			item = null;
 			displayItem();
 		}
+	}
+	@Override
+	public void setBackground(Color bg, Color bg2) {
+		this.panelGlobal.setBackground(bg);
+		this.panelAux.setBackground(bg);
 	}
 }

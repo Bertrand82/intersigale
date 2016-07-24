@@ -1,5 +1,6 @@
 package inter.sigale.model.swing;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
@@ -22,9 +23,10 @@ import inter.sigale.model.LexiqueFactory;
 import inter.sigale.model.statistic.StatistiquesLexique;
 import inter.sigale.model.statistic.StatistiquesLexiqueFactory;
 
-public class DebugUI {
+public class DebugUI implements ISwingable{
 
 	JPanel panelGlobal = new JPanel();
+	JPanel panelCommand = new JPanel();
 	JButton buttonReadStatisticFromFile = new JButton("Read Statistics from File");
 	JButton buttonSaveStatisticInFile = new JButton("Save Statistics in File");
 	JButton buttonReadStatistic = new JButton("Read Statistics");
@@ -61,7 +63,7 @@ public class DebugUI {
 			}
 		});
 
-		JPanel panelCommand = new JPanel();
+		
 		panelCommand.setLayout(new BoxLayout(panelCommand, BoxLayout.PAGE_AXIS));
 		panelCommand.add(buttonReadStatisticFromFile);
 		panelCommand.add(buttonSaveStatisticInFile);
@@ -110,6 +112,16 @@ public class DebugUI {
 	public JPanel getPanelGlobal() {
 		return panelGlobal;
 
+	}
+
+	@Override
+	public void setBackground(Color bg,Color bg2) {
+		this.panelGlobal.setBackground(bg);
+		this.panelCommand.setBackground(bg);
+		this.buttonReadStatistic.setBackground(bg2);
+		this.buttonSaveStatistic.setBackground(bg2);
+		this.buttonSaveStatisticInFile.setBackground(bg2);
+		this.buttonReadStatisticFromFile.setBackground(bg2);
 	}
 
 }

@@ -5,15 +5,17 @@ import java.util.Enumeration;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIDefaults;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
 
-import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
+
 
 import inter.sigale.model.statistic.StatistiquesLexiqueFactory;
+
 
 public class MainFrameUI {
 
@@ -29,12 +31,14 @@ public class MainFrameUI {
 
 	public MainFrameUI() {
 		setFontSize();
-		tabbedPane.addTab("Leçon", lessonUI.getPanelGlobal());
-		tabbedPane.addTab("Admin", adminUI.getPanelGlobal());
-		tabbedPane.addTab("Edit", itemEditUI.getPanelGlobal());
-		tabbedPane.addTab("Stat", statisticUI.getPanelGlobal());
+		tabbedPane.setBackground(ConstantesSwing.color_bg);
+		initTab("Lesson", lessonUI);
+		initTab("Admin", adminUI);
+		initTab("Edit", itemEditUI);
+		initTab("Stat", statisticUI);
 		if (debug) {
-			tabbedPane.addTab("debug", debugUI.getPanelGlobal());
+			initTab("Debug", debugUI);
+			//tabbedPane.addTab("debug", debugUI.getPanelGlobal());
 		}
 		// frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -45,6 +49,7 @@ public class MainFrameUI {
 			}
 		});
 		frame.add(tabbedPane);
+		frame.setBackground(ConstantesSwing.color_bg);
 		frame.setTitle("InterSigale");
 		SwingUtilities.updateComponentTreeUI(frame);
 		frame.pack();
@@ -53,6 +58,13 @@ public class MainFrameUI {
 
 	
 	
+	private void initTab(String title, ISwingable swingable) {
+		swingable.setBackground(ConstantesSwing.color_bg, ConstantesSwing.color_bg_button);
+		tabbedPane.addTab(title, swingable.getPanelGlobal());
+	}
+
+
+
 	private  void setFontSize() {
 		UIManager.put("Label.font",( (Font) UIManager.getFont("Label.font")).deriveFont(20.0f));
 		UIManager.put("TextField.font",( (Font) UIManager.getFont("TextField.font")).deriveFont(20.0f));

@@ -1,6 +1,7 @@
 package inter.sigale.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlElement;
@@ -119,6 +120,9 @@ public class UniteLexicale {
 	public void setStatistique(StatistiquesUL statistique) {
 		this.statistique = statistique;
 	}
+
+
+
 
 	
 

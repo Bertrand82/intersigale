@@ -1,5 +1,6 @@
 package inter.sigale.model.swing;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
@@ -23,9 +24,10 @@ import javax.xml.bind.Unmarshaller;
 import inter.sigale.model.Lexique;
 import inter.sigale.model.LexiqueFactory;
 
-public class AdminUI {
+public class AdminUI implements ISwingable {
 
 	private JPanel panelGlobal = new JPanel();
+	JPanel panelCommand = new JPanel();
 	private JButton buttonChooseLexique = new JButton("Choose Lexique");
 	private JButton buttonSaveLexique = new JButton("Save Lexique");
 	private JButton buttonCreateLexique = new JButton("Create Lexique");
@@ -54,7 +56,7 @@ public class AdminUI {
 			}
 		});
 
-		JPanel panelCommand = new JPanel();
+		
 		panelCommand.setLayout(new BoxLayout(panelCommand, BoxLayout.PAGE_AXIS));
 		panelCommand.add(buttonChooseLexique);
 		panelCommand.add(buttonSaveLexique);
@@ -98,6 +100,12 @@ public class AdminUI {
 	public JPanel getPanelGlobal() {
 		return panelGlobal;
 
+	}
+
+	@Override
+	public void setBackground(Color bg, Color bg2) {
+		this.panelGlobal.setBackground(bg);
+		this.panelCommand.setBackground(bg);
 	}
 
 	

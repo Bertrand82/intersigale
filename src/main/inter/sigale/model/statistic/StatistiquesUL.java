@@ -1,6 +1,7 @@
 package inter.sigale.model.statistic;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlElement;
@@ -14,7 +15,7 @@ import inter.sigale.model.Phrase;
 @XmlSeeAlso({StatistiquesItem.class})
 public class StatistiquesUL {
 	/**
-	 * Pas encore utilisé 
+	 * Pas encore utilisï¿½ 
 	 */
 	private String uniteLexicaleId ="0";
 	private List<StatistiquesItem> list = new ArrayList<>();
@@ -65,6 +66,16 @@ public class StatistiquesUL {
 	@XmlElement(name="StatItem")
 	public void setList(List<StatistiquesItem> list) {
 		this.list = list;
+	}
+
+	public List<StatistiquesItem> getListAfterDate(Date date_0) {
+		List<StatistiquesItem> list2 = new ArrayList<>();
+		for(StatistiquesItem statistiquesItem : this.list){
+			if (statistiquesItem.getDate().after(date_0)){
+				list2.add(statistiquesItem);
+			}
+		}
+		return list2;
 	}
 
 }
