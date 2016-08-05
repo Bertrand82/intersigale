@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp spec="1.0+" codebase=
+"https://docs.oracle.com/javase/tutorialJWS/samples/deployment/webstart_ComponentArch_DynamicTreeDemo" 
+    href="intersigale.jnlp">
+    <information>
+        <title>InterSigale</title>
+        <vendor>Bertrand</vendor>
+    </information>
+    <resources>
+        <!-- Application Resources -->
+        <j2se version="1.7+"
+              href="http://java.sun.com/products/autodl/j2se"/>
+        <jar href="intersigale.jar" main="true" />
+
+    </resources>
+    <application-desc
+         name="InterSigale"        
+         main-class="inter.sigale.MainGUISwing"
+         width="300"
+         height="300">
+     </application-desc>
+     <update check="background"/>
+</jnlp>                                
