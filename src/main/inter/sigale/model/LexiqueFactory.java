@@ -3,17 +3,13 @@ package inter.sigale.model;
 import java.io.File;
 import java.io.FileInputStream;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
+import org.simpleframework.xml.core.Persister;
 
 import inter.sigale.UtilInterSigale;
 import inter.sigale.model.statistic.StatistiquesLexiqueFactory;
 
 public class LexiqueFactory {
-	
-	private Marshaller marshaller;
-	private Unmarshaller unmarshaler;
+	private Persister persister = new Persister();
 	public static final String KEY_LexiqueName="intersigale.lexique.name";
 
 	private  Lexique lexique;
@@ -58,8 +54,8 @@ public class LexiqueFactory {
 	}
 	private static Lexique getLexiqueDefault() {
 		Lexique lexique = new Lexique();
-		lexique.add( new UniteLexicale( new Phrase("Qui a créé intersigale ?"),new Phrase("Bertrand")));
-		lexique.add( new UniteLexicale( new Phrase("Pourquoi il a fait ça ?"),new Phrase("Pour apprendre")));
+		lexique.add( new UniteLexicale( new Phrase("Qui a crï¿½ï¿½ intersigale ?"),new Phrase("Bertrand")));
+		lexique.add( new UniteLexicale( new Phrase("Pourquoi il a fait ï¿½a ?"),new Phrase("Pour apprendre")));
 		lexique.add( new UniteLexicale( new Phrase("Pour apprendre quoi ?"),new Phrase("Tout")));
 		return lexique;
 	}
@@ -70,8 +66,8 @@ public class LexiqueFactory {
 		System.out.println("saveLexique 1");
 		
 		// jaxbMarshaller.marshal(LexiqueFactory.getLexique(), file);
-		getXmlMarshaller().marshal(getLexique(), System.out);
-		getXmlMarshaller().marshal(getLexique(), selectedFile);
+		persister.write(getLexique(), System.out);
+		persister.write(getLexique(), selectedFile);
 
 		System.out.println("saveLexique done "+selectedFile.getAbsolutePath());
 
@@ -80,8 +76,7 @@ public class LexiqueFactory {
 	
 	public void chooseLexique(File selectedFile) throws Exception{
 		FileInputStream is = new FileInputStream(selectedFile);
-		Object o = getXmlUnMarshaller().unmarshal(is);
-		this.lexique = (Lexique) o;
+		this.lexique = persister.read(Lexique.class, is);
 		System.out.println("lexique : "+lexique);
 		fetchStatistique();
 	}
@@ -90,28 +85,10 @@ public class LexiqueFactory {
 		StatistiquesLexiqueFactory.getInstance().fetchStatistique();
 		
 	}
-	private Marshaller getXmlMarshaller() throws Exception {
-		if (marshaller == null){
-			JAXBContext jaxbContext = JAXBContext.newInstance(Lexique.class);
-			marshaller = jaxbContext.createMarshaller();
-			// output pretty printed
-			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-		}
-		return marshaller;
-	}
-	/**
-	 * 
-	 * @return
-	 * @throws Exception
-	 */
-	private Unmarshaller getXmlUnMarshaller() throws Exception {
-		if (unmarshaler == null){
-			JAXBContext jaxbContext = JAXBContext.newInstance(Lexique.class);
-			unmarshaler = jaxbContext.createUnmarshaller();
-	//		unmarshaler.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-		}
-		return unmarshaler;
-	}
+	
+	
+	
+	
 	/**
 	 * 
 	 * @param name

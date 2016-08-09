@@ -1,22 +1,30 @@
 package inter.sigale.model;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSeeAlso;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
+import org.simpleframework.xml.Transient;
 
 import inter.sigale.model.statistic.StatistiquesUL;
 import inter.sigale.util.UtilDivers;
-@XmlRootElement(name="iItem")
-@XmlSeeAlso({Phrase.class})
+
+@Root
 public class UniteLexicale {
 
+/*	@ElementListUnion({
+		   @ElementList(entry="p2", inline=true, type=Phrase.class)	               
+	})
+*/
+	
+	@Element
 	private Phrase phrase_0 ;
+	@Element
 	private Phrase phrase_1;
+	@Transient
 	private List<Vote> listVotes = new ArrayList<Vote>();
+	@Transient
 	private StatistiquesUL statistique = new StatistiquesUL();
 	
 	
@@ -49,7 +57,7 @@ public class UniteLexicale {
 
 
 
-	@XmlElement(name="phrase_0")
+//	@Element(name="phrase_0")
 	 public Phrase getPhrase_0() {
 		
 		return phrase_0;
@@ -62,7 +70,7 @@ public class UniteLexicale {
 	}
 
 
-	@XmlElement(name="phrase_1")
+//	@Element(name="phrase_1")
 	public Phrase getPhrase_1() {
 		return phrase_1;
 	}

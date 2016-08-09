@@ -34,9 +34,17 @@ package inter.sigale.model.swing;
 /*
 * TabDemo.java
 */
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.Dimension;
 
-import java.awt.*;
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 public class TabDemo {
 	final static String BUTTONPANEL = "Tab with JButtons";

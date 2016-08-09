@@ -3,9 +3,7 @@ package inter.sigale.model.statistic;
 import java.io.File;
 import java.io.FileInputStream;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
+import org.simpleframework.xml.core.Persister;
 
 import inter.sigale.model.Lexique;
 import inter.sigale.model.LexiqueFactory;
@@ -14,6 +12,7 @@ import inter.sigale.model.UniteLexicale;
 public class StatistiquesLexiqueFactory {
 
 	private static StatistiquesLexiqueFactory instance;
+	private Persister persister = new Persister();
 	
 	public synchronized  static StatistiquesLexiqueFactory getInstance(){
 		if (instance == null){
@@ -55,32 +54,21 @@ public class StatistiquesLexiqueFactory {
 		return f;
 	}
 	
-	private Marshaller marshaller;
-	private Unmarshaller unmarshaler;
+	
 
-
-	private Marshaller getXmlMarshaller() throws Exception {
-		if (marshaller == null) {
-			JAXBContext jaxbContext = JAXBContext.newInstance(StatistiquesLexique.class);
-			marshaller = jaxbContext.createMarshaller();
-			// output pretty printed
-			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-		}
-		return marshaller;
+	private Persister getXmlMarshaller() throws Exception {
+		
+		return persister;
 	}
 
-	private Unmarshaller getXmlUnMarshaller() throws Exception {
-		if (unmarshaler == null) {
-			JAXBContext jaxbContext = JAXBContext.newInstance(StatistiquesLexique.class);
-			unmarshaler = jaxbContext.createUnmarshaller();
-			// unmarshaler.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-		}
-		return unmarshaler;
+	private Persister getXmlUnMarshaller() throws Exception {
+		
+		return persister;
 	}
 
 	public void readStatistics(File selectedFile) throws Exception {
 		FileInputStream is = new FileInputStream(selectedFile);
-		Object o = getXmlUnMarshaller().unmarshal(is);
+		Object o = getXmlUnMarshaller().read(StatistiquesLexique.class,is);
 		StatistiquesLexique statistiqueLexique = (StatistiquesLexique) o;
 		StatistiquesLexiqueFactory.setStatistiqueLexique(statistiqueLexique);
 		System.out.println("StatistiquesLexique : " + statistiqueLexique);
@@ -93,8 +81,8 @@ public class StatistiquesLexiqueFactory {
 				+ StatistiquesLexiqueFactory.getStatistiquesLexique().getListStatistiqueUL().size());
 
 		// jaxbMarshaller.marshal(LexiqueFactory.getLexique(), file);
-		getXmlMarshaller().marshal(StatistiquesLexiqueFactory.getStatistiquesLexique(), System.out);
-		getXmlMarshaller().marshal(StatistiquesLexiqueFactory.getStatistiquesLexique(), selectedFile);
+		getXmlMarshaller().write(StatistiquesLexiqueFactory.getStatistiquesLexique(), System.out);
+		getXmlMarshaller().write(StatistiquesLexiqueFactory.getStatistiquesLexique(), selectedFile);
 
 		System.out.println("saveStatistic done " + selectedFile.getAbsolutePath());
 

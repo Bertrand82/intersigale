@@ -3,12 +3,15 @@ package inter.sigale.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 
-@XmlRootElement
+@Root
 public class Phrase {
+	
+	@Element
 	String text;
+	
 	List<Audio> listAudio = new ArrayList<Audio>();
 	
 	public Phrase() {
@@ -19,7 +22,7 @@ public class Phrase {
 		this();
 		this.text=text;
 	}
-	@XmlElement(name="text")
+	
 	public void setText(String text) {
 		this.text = text;
 	}

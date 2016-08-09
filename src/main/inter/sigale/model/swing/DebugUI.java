@@ -3,24 +3,13 @@ package inter.sigale.model.swing;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
 
-import inter.sigale.model.Lexique;
-import inter.sigale.model.LexiqueFactory;
-import inter.sigale.model.statistic.StatistiquesLexique;
 import inter.sigale.model.statistic.StatistiquesLexiqueFactory;
 
 public class DebugUI implements ISwingable{
@@ -35,28 +24,28 @@ public class DebugUI implements ISwingable{
 
 	public DebugUI() {
 		buttonReadStatisticFromFile.addActionListener(new ActionListener() {
-			@Override
+			
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("ReadStatisticeFromFile action");
 				readStatisticFromFile();
 			}
 		});
 		buttonReadStatistic.addActionListener(new ActionListener() {
-			@Override
+			
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("ReadStatistice action");
 				StatistiquesLexiqueFactory.getInstance().fetchStatistiqueLocalInFile();
 			}
 		});
 		buttonSaveStatistic.addActionListener(new ActionListener() {
-			@Override
+			
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("SaveStatistic action");
 				StatistiquesLexiqueFactory.getInstance().saveStatisticCurrentLexique();
 			}
 		});
 		buttonSaveStatisticInFile.addActionListener(new ActionListener() {
-			@Override
+			
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("SaveStatisticInFile action");
 				saveStatisticInFile();
@@ -114,7 +103,7 @@ public class DebugUI implements ISwingable{
 
 	}
 
-	@Override
+	
 	public void setBackground(Color bg,Color bg2) {
 		this.panelGlobal.setBackground(bg);
 		this.panelCommand.setBackground(bg);

@@ -3,6 +3,7 @@ package inter.sigale.model.swing;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
@@ -13,11 +14,12 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
 
-import inter.sigale.model.LexiqueFactory;
 import inter.sigale.model.UniteLexicale;
 import inter.sigale.model.statistic.StatistiquesItem;
 import inter.sigale.model.statistic.StatistiquesUL;
@@ -28,11 +30,14 @@ public class StatistiquePanel extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	int w = 300;
-	int marge_w = 20;
+	int marge_w_g = 150;
+	int marge_w_d = 10;
+	
 	int h_2 = 50;
 	int h = 2 * h_2;
 	Date date_1 = new Date();
 	Date date_0;
+	String titre ="";
 	private UniteLexicale uniteLexicale;
 	private StatistiquesUL statistique;
 	private long duree;
@@ -42,28 +47,28 @@ public class StatistiquePanel extends JPanel {
 	JButton buttonMonth = new JButton("month");
 	JButton buttonDay = new JButton("Day");
 	JLabel labelCenter = new JLabel("");
-	
+	JPanel panelSouth = new JPanel(new FlowLayout());
 	public StatistiquePanel() {
 		super();
 		canvasStatistic = new CanvasStatistic();
 		JPanel panelButtons = new JPanel(new GridLayout(1, 0));
 		buttonDay.addActionListener(new ActionListener() {
 
-			@Override
+			
 			public void actionPerformed(ActionEvent e) {
 				initIntervalle(Calendar.DAY_OF_YEAR, "Day");
 			}
 		});
 		buttonWeek.addActionListener(new ActionListener() {
 
-			@Override
+			
 			public void actionPerformed(ActionEvent e) {
 				initIntervalle(Calendar.WEEK_OF_YEAR,"Week");
 			}
 		});
 		buttonMonth.addActionListener(new ActionListener() {
 
-			@Override
+			
 			public void actionPerformed(ActionEvent e) {
 				initIntervalle(Calendar.MONTH,"Month");
 			}
@@ -74,14 +79,19 @@ public class StatistiquePanel extends JPanel {
 		panelButtons.add(buttonDay);
 		panelButtons.add(buttonWeek);
 		panelButtons.add(buttonMonth);
-		JPanel panelSouth = new JPanel(new BorderLayout());
+		
 		panelSouth.add(panelButtons, BorderLayout.WEST);
-		panelSouth.add(labelLog, BorderLayout.CENTER);
-		this.setLayout(new BorderLayout());
-		this.add(this.canvasStatistic, BorderLayout.WEST);
-		this.add(this.labelCenter, BorderLayout.CENTER);
-		this.add(panelSouth, BorderLayout.SOUTH);
+		//labelLog.setBorder(new LineBorder(Color.RED));
+		//panelSouth.add(labelLog, BorderLayout.CENTER);
+		
+		
+		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        canvasStatistic.setBorder(new LineBorder(Color.RED,5));
+		this.add(this.canvasStatistic);
+		//this.add(this.labelCenter, BorderLayout.CENTER);
+	    this.add(panelSouth);
 		initIntervalle(Calendar.MONTH,"Month");
+		panelSouth.setBorder(new LineBorder(Color.RED));
 	}
 
 	
@@ -98,7 +108,8 @@ public class StatistiquePanel extends JPanel {
 		calendar.add(field, -1);
 		this.date_0 = calendar.getTime();
 		this.duree = this.date_1.getTime() - this.date_0.getTime();
-		this.labelLog.setText(log);
+		//this.labelLog.setText(log);
+		this.titre =log;
 		repaint();
 	}
 
@@ -116,6 +127,8 @@ public class StatistiquePanel extends JPanel {
 	
 	public void setBackground(Color bg, Color bg2) {
 		super.setBackground(bg);
+		this.panelSouth.setBackground(bg);
+		this.panelSouth.setOpaque(true);
 		if (labelCenter != null){
 			labelCenter.setBackground(bg);
 		}
@@ -135,47 +148,58 @@ public class StatistiquePanel extends JPanel {
 		private static final long serialVersionUID = 1L;
 
 		private CanvasStatistic() {
-			Dimension dimension = new Dimension(w + marge_w, h);
+			Dimension dimension = new Dimension(w + marge_w_g+marge_w_d, h);
 			super.setPreferredSize(dimension);
 			super.setMinimumSize(dimension);
+			super.setMaximumSize(dimension);
 
 		}
 
 		@Override
 		public void paint(Graphics g) {
 			super.paint(g);
+			Font newFont = new Font("default", Font.BOLD, 16);
+			g.setFont(newFont);
 			g.setColor(Color.blue);
 
-			g.fillRect(0, 0, w + marge_w, h);
+			g.fillRect(0, 0, w + marge_w_g + marge_w_d, h);
 			g.setColor(Color.black);
-			g.drawLine(0, h_2, w, h_2);
+			
 			paintStatistique(g);
 		}
 
 		private void paintStatistique(Graphics g) {
 			if (StatistiquePanel.this.statistique == null) {
 				g.setColor(Color.black);
+				g.drawString( titre+"  " , 20, 20);
 				g.drawString("No Stat", 20, h_2);
 			} else {
 				g.setColor(Color.black);
-
+				g.drawLine(marge_w_g, h_2, marge_w_g+w, h_2);
 				List<StatistiquesItem> list = statistique.getListAfterDate(StatistiquePanel.this.date_0);
-				g.drawString("Stat : " + list.size(), 20, h_2 - 20);
+				int nb_succes =0;
+				int nb_failures = 0;
 				for (StatistiquesItem statistiquesItem : list) {
 					long deltaTime = statistiquesItem.getDate().getTime() - StatistiquePanel.this.date_0.getTime();
 					int timeW = (int) ((deltaTime * w) / duree);
 					int hStat;
 					if(statistiquesItem.isSucces()){
 						hStat=0;
+						nb_succes++;
 					}else {
 						hStat=h;
+						nb_failures++;
 					}
-					g.drawLine(timeW, h_2, timeW, hStat);
+					int x = marge_w_g+timeW;
+					g.drawLine(x, h_2, x, hStat);
 				}
+				
+				
+				g.drawString( titre+"  " , 20, 20);
+				g.drawString("Succes : "+ nb_succes+" / " + list.size(), 20, h_2 - 10);
+				g.drawString("Failures : "+ nb_failures+" / " + list.size(), 20, h_2 + 20 );
 			}
-
 		}
-
 	}
 
 }

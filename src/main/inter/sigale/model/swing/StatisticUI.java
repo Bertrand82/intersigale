@@ -2,7 +2,6 @@ package inter.sigale.model.swing;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.GridLayout;
 
 import javax.swing.JLabel;
@@ -49,7 +48,7 @@ public class StatisticUI implements ISwingable {
 		this.labelNbMtsOk.setText(""+nbUniteLexicaleOK);
 		this.labelNbMots.setText(""+nbUniteLexicaleTotal);
 	}
-	@Override
+	
 	public void setBackground(Color bg, Color bg2) {
 		this.panelGlobal.setBackground(bg);
 		this.panelGrid.setBackground(bg);

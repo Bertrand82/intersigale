@@ -4,25 +4,37 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlMixed;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSeeAlso;
-
-import com.sun.xml.internal.txw2.annotation.XmlAttribute;
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.ElementUnion;
+import org.simpleframework.xml.Root;
+import org.simpleframework.xml.Transient;
 
 import inter.sigale.model.statistic.StatistiquesLexique;
 import inter.sigale.model.statistic.StatistiquesUL;
 
 
-@XmlRootElement
-@XmlSeeAlso({UniteLexicale.class,Phrase.class})
+@Root
+
 public class Lexique implements Serializable {
 
+
+	@ElementUnion({
+        @Element(name="text", type=String.class,required=false),
+        @Element(name="int", type=Integer.class,required=false),
+        @Element(name="long", type=Long.class,required=false),
+        @Element(name="double", type=Double.class,required=false)
+     })
+	   
+	@Transient
 	private static final long serialVersionUID = 1L;
 	
-	private String name ="intersigale-default";
 	
+	
+	@Attribute
+	private String name ="intersigale-default";
+	@ElementList
 	private List<UniteLexicale> listUniteLexicale = new ArrayList<UniteLexicale>();
 	
 	int iCourrante = 0;
@@ -58,7 +70,7 @@ public class Lexique implements Serializable {
 		return listUniteLexicale;
 	}
 
-	@XmlElement
+	
 	public void setListUniteLexicale(List<UniteLexicale> listUniteLexicale) {
 		this.listUniteLexicale = listUniteLexicale;
 	}
@@ -109,7 +121,7 @@ public class Lexique implements Serializable {
 		}
 	}
 
-	@XmlAttribute
+	
 	public String getName() {
 		return name;
 	}
@@ -124,6 +136,37 @@ public class Lexique implements Serializable {
 
 	public void setiCourrante(int iCourrante) {
 		this.iCourrante = iCourrante;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((listUniteLexicale == null) ? 0 : listUniteLexicale.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Lexique other = (Lexique) obj;
+		if (listUniteLexicale == null) {
+			if (other.listUniteLexicale != null)
+				return false;
+		} else if (!listUniteLexicale.equals(other.listUniteLexicale))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		return true;
 	}
 
 	

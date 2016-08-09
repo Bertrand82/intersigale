@@ -1,6 +1,5 @@
 package inter.sigale.model.swing;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -41,24 +40,24 @@ public class ItemEditUI implements ISwingable {
 		labelStatistic.setEditable(false);
 		this.panelGlobal.addComponentListener(new ComponentListener() {
 			
-			@Override
+			
 			public void componentShown(ComponentEvent e) {
 				init();
 			}
 			
-			@Override
+			
 			public void componentResized(ComponentEvent e) {
 				// TODO Auto-generated method stub
 				
 			}
 			
-			@Override
+			
 			public void componentMoved(ComponentEvent e) {
 				// TODO Auto-generated method stub
 				
 			}
 			
-			@Override
+			
 			public void componentHidden(ComponentEvent e) {
 				// TODO Auto-generated method stub
 				
@@ -66,28 +65,27 @@ public class ItemEditUI implements ISwingable {
 		});
 		buttonNext.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				nextItem(1);
 			}
 		});
 		buttonPrevious.addActionListener(new ActionListener() {
 
-			@Override
+			
 			public void actionPerformed(ActionEvent e) {
 				nextItem(-1);
 			}
 		});
 		buttonNew.addActionListener(new ActionListener() {
 
-			@Override
+			
 			public void actionPerformed(ActionEvent e) {
 				createNew();				
 			}
 		});
 		buttonRecord.addActionListener(new ActionListener() {
 
-			@Override
+			
 			public void actionPerformed(ActionEvent e) {
 				record();
 			}
@@ -212,7 +210,7 @@ public class ItemEditUI implements ISwingable {
 			displayItem();
 		}
 	}
-	@Override
+	
 	public void setBackground(Color bg, Color bg2) {
 		this.panelGlobal.setBackground(bg);
 		this.panelAux.setBackground(bg);

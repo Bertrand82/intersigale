@@ -2,9 +2,7 @@ package inter.sigale;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.Properties;
 
 import inter.sigale.model.LexiqueFactory;
@@ -15,7 +13,7 @@ public class UtilInterSigale {
 	private static  Properties properties; 
       public static void initProperties(){
     	  Properties p = getProperties();
-    	  // Si on a passé en ligne de commande la property, lors on ne l'ecrase pas
+    	  // Si on a passï¿½ en ligne de commande la property, lors on ne l'ecrase pas
     	  if (System.getProperty(LexiqueFactory.KEY_LexiqueName) == null){
     		  // Si cette property est definie alors on la met dans system
     		  if (properties.getProperty(LexiqueFactory.KEY_LexiqueName) != null)

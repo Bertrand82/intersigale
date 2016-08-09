@@ -3,25 +3,14 @@ package inter.sigale.model.swing;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
 
-import inter.sigale.model.Lexique;
 import inter.sigale.model.LexiqueFactory;
 
 public class AdminUI implements ISwingable {
@@ -34,7 +23,7 @@ public class AdminUI implements ISwingable {
 	private JFileChooser chooser = new JFileChooser();
 	public AdminUI() {
 		buttonChooseLexique.addActionListener(new ActionListener() {
-			@Override
+			
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("ChooseLexique action");
 				chooseLexique();
@@ -42,14 +31,14 @@ public class AdminUI implements ISwingable {
 		});
 
 		buttonSaveLexique.addActionListener(new ActionListener() {
-			@Override
+			
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("SaveLexique action");
 				saveLexique();
 			}
 		});
 		buttonCreateLexique.addActionListener(new ActionListener() {
-			@Override
+			
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("CreateLexique action");
 				createLexique();
@@ -102,7 +91,7 @@ public class AdminUI implements ISwingable {
 
 	}
 
-	@Override
+	
 	public void setBackground(Color bg, Color bg2) {
 		this.panelGlobal.setBackground(bg);
 		this.panelCommand.setBackground(bg);

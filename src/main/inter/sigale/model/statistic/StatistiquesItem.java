@@ -2,17 +2,17 @@ package inter.sigale.model.statistic;
 
 import java.util.Date;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Root;
 
-import com.sun.xml.internal.txw2.annotation.XmlAttribute;
-
-@XmlRootElement(name="iItemStat")
+@Root
 public class StatistiquesItem {
 
 	
-	
+	@Attribute
 	boolean succes;
+	
+	@Attribute
 	Date date = new Date();
 	
 	
@@ -26,7 +26,7 @@ public class StatistiquesItem {
 		succes = result_;
 	}
 
-	@XmlAttribute
+
 	public boolean isSucces() {
 		
 		return succes;
@@ -36,7 +36,7 @@ public class StatistiquesItem {
 		return b==succes;
 	}
 
-	@XmlAttribute
+
 	public Date getDate() {
 		return date;
 	}

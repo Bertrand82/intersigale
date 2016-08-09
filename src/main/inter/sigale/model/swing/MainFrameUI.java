@@ -1,18 +1,11 @@
 package inter.sigale.model.swing;
 
 import java.awt.Font;
-import java.util.Enumeration;
 
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingUtilities;
-import javax.swing.UIDefaults;
 import javax.swing.UIManager;
-import javax.swing.plaf.FontUIResource;
-
-
 
 import inter.sigale.model.statistic.StatistiquesLexiqueFactory;
 

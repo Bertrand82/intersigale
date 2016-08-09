@@ -36,7 +36,7 @@ public class LessonUI implements ISwingable  {
 	public LessonUI() {
 		 LexiqueFactory.getInstance().getLexique();
 		buttonValidResult.addActionListener(new ActionListener() {			
-			@Override
+			
 			public void actionPerformed(ActionEvent e) {
 				validResult();
 				
@@ -44,7 +44,7 @@ public class LessonUI implements ISwingable  {
 		});
 		buttonNext.addActionListener(new ActionListener() {
 			
-			@Override
+			
 			public void actionPerformed(ActionEvent e) {
 				nextPhrase();
 				textFieldResponse.requestFocusInWindow();
@@ -53,7 +53,7 @@ public class LessonUI implements ISwingable  {
 		
 		textFieldResponse.addActionListener(new ActionListener() {
 			
-			@Override
+			
 			public void actionPerformed(ActionEvent e) {
 				//System.out.println("textField.action command: "+e.getActionCommand()+"  modifier: "+e.getModifiers());
 				validResult();
@@ -91,12 +91,15 @@ public class LessonUI implements ISwingable  {
 		String text = ul.getPhrase_1().getText();
 		UniteLexicale ulCourrante =  getLexique().getUniteLexicaleCourante();
 		boolean ok = ulCourrante.resultProcess(this.textFieldResponse.getText());
-		String stat = ulCourrante.getStatistiqueResume();
+		String stat = " ? ";
 		this.statistiquePanel.updateStat(ulCourrante);
 		System.out.println("ValidResult "+ok);
 		//this.textFieldResponse.setText(text);
 		setButtonsEtat(false);
-		if (!ok){
+		if (ok){
+			stat = " ok ";
+		}else {
+			stat = " ko ";
 			System.out.println("p0 :"+getLexique().getUniteLexicaleCourante().getPhrase_0().getText());
 			System.out.println("p1 :"+getLexique().getUniteLexicaleCourante().getPhrase_1().getText());
 			System.out.println("p2 :"+textFieldResponse.getText());
@@ -148,12 +151,12 @@ public class LessonUI implements ISwingable  {
 		return  LexiqueFactory.getInstance().getLexique();
 	}
 	
-	@Override
+	
 	public void setBackground(Color bg, Color bg2) {
 		this.panelGlobal.setBackground(bg);
 		this.panelButtons.setBackground(bg);
 		this.panelCorrection.setBackground(bg);
 		this.panelPhrases.setBackground(bg);
-		this.statistiquePanel.setBackground(bg);
+		this.statistiquePanel.setBackground(bg,bg2);
 	}
 }

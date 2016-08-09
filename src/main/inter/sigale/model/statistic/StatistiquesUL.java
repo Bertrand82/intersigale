@@ -4,28 +4,28 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSeeAlso;
-
-import inter.sigale.model.Phrase;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Root;
 
 
-@XmlRootElement(name="StatItem")
-@XmlSeeAlso({StatistiquesItem.class})
+@Root
 public class StatistiquesUL {
 	/**
 	 * Pas encore utilis� 
 	 */
+	@Element
 	private String uniteLexicaleId ="0";
-	private List<StatistiquesItem> list = new ArrayList<>();
+	
+	@ElementList
+	private List<StatistiquesItem> list = new ArrayList<StatistiquesItem> ();
 	
 	public StatistiquesUL(){
 	}
 
 	public String getResume() {
 		
-		return " Succes : "+geNbSucces()+" / Total : "+list.size()+" ";
+		return " Succes : ";
 	}
 
 	private int  geNbSucces() {
@@ -51,7 +51,7 @@ public class StatistiquesUL {
 		
 	}
 
-	@XmlElement(name="Id")
+
 	public String getUniteLexicaleId() {
 		return uniteLexicaleId;
 	}
@@ -63,13 +63,13 @@ public class StatistiquesUL {
 	public List<StatistiquesItem> getList() {
 		return list;
 	}
-	@XmlElement(name="StatItem")
+	
 	public void setList(List<StatistiquesItem> list) {
 		this.list = list;
 	}
 
 	public List<StatistiquesItem> getListAfterDate(Date date_0) {
-		List<StatistiquesItem> list2 = new ArrayList<>();
+		List<StatistiquesItem> list2 = new ArrayList();
 		for(StatistiquesItem statistiquesItem : this.list){
 			if (statistiquesItem.getDate().after(date_0)){
 				list2.add(statistiquesItem);
