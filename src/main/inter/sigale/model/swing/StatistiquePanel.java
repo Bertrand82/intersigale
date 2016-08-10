@@ -46,12 +46,20 @@ public class StatistiquePanel extends JPanel {
 	JButton buttonWeek = new JButton("week");
 	JButton buttonMonth = new JButton("month");
 	JButton buttonDay = new JButton("Day");
+	JButton buttonHour = new JButton("Hour");
 	JLabel labelCenter = new JLabel("");
 	JPanel panelSouth = new JPanel(new FlowLayout());
 	public StatistiquePanel() {
 		super();
 		canvasStatistic = new CanvasStatistic();
 		JPanel panelButtons = new JPanel(new GridLayout(1, 0));
+		buttonHour.addActionListener(new ActionListener() {
+
+			
+			public void actionPerformed(ActionEvent e) {
+				initIntervalle(Calendar.HOUR_OF_DAY, "Hour");
+			}
+		});
 		buttonDay.addActionListener(new ActionListener() {
 
 			
@@ -76,6 +84,7 @@ public class StatistiquePanel extends JPanel {
 		initButton(buttonMonth);
 		initButton(buttonDay);
 		initButton(buttonWeek);
+		panelButtons.add(buttonHour);
 		panelButtons.add(buttonDay);
 		panelButtons.add(buttonWeek);
 		panelButtons.add(buttonMonth);
@@ -132,7 +141,9 @@ public class StatistiquePanel extends JPanel {
 		if (labelCenter != null){
 			labelCenter.setBackground(bg);
 		}
-		if (buttonDay != null){
+		if (buttonHour != null){
+			buttonHour.setBackground(bg2);
+		}if (buttonDay != null){
 			buttonDay.setBackground(bg2);
 		}
 		if (buttonMonth != null){

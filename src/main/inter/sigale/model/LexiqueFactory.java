@@ -7,8 +7,9 @@ import org.simpleframework.xml.core.Persister;
 
 import inter.sigale.UtilInterSigale;
 import inter.sigale.model.statistic.StatistiquesLexiqueFactory;
+import inter.sigale.util.ILogListener;
 
-public class LexiqueFactory {
+public class LexiqueFactory implements ILogListener{
 	private Persister persister = new Persister();
 	public static final String KEY_LexiqueName="intersigale.lexique.name";
 
@@ -29,25 +30,33 @@ public class LexiqueFactory {
 	private  void initLexique() {
 		this.lexique = null;
 		String lexiqueName = getLexiqueName();
-		
+		log("Start Loading "+lexiqueName);
 		
 		File fileLexique = getFileLexique(lexiqueName);
+		logTitle(lexiqueName);
 		System.out.println("Lexique name :"+lexiqueName+"   "+fileLexique);
 		if (fileLexique== null){
+			log("No file ");
+			
 			lexique = getLexiqueDefault();
 		}else {
-			System.out.println("file "+fileLexique.getAbsolutePath()+"  exists: "+fileLexique.exists());
+			log("file "+fileLexique.getAbsolutePath()+"  exists: "+fileLexique.exists());
 			
 			if(fileLexique.exists()){
 				try {
 					chooseLexique(fileLexique);
+					
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+					log("Exception "+e.getMessage());
 				}
+			}else{
+				log("No file Lexique");
 			}
 			
 		}
+		
 	}
 	private String getLexiqueName() {		
 		return System.getProperty(KEY_LexiqueName);
@@ -63,13 +72,13 @@ public class LexiqueFactory {
 	
 	
 	public void saveLexique(File selectedFile) throws Exception {
-		System.out.println("saveLexique 1");
+		System.out.println("saveLexique 1 "+selectedFile.getPath());
 		
 		// jaxbMarshaller.marshal(LexiqueFactory.getLexique(), file);
 		persister.write(getLexique(), System.out);
 		persister.write(getLexique(), selectedFile);
 
-		System.out.println("saveLexique done "+selectedFile.getAbsolutePath());
+		log("saveLexique done "+selectedFile.getAbsolutePath());
 
 	}
 	
@@ -77,7 +86,8 @@ public class LexiqueFactory {
 	public void chooseLexique(File selectedFile) throws Exception{
 		FileInputStream is = new FileInputStream(selectedFile);
 		this.lexique = persister.read(Lexique.class, is);
-		System.out.println("lexique : "+lexique);
+		log("lexique : "+lexique);
+		logTitle(this.lexique.getName());
 		fetchStatistique();
 	}
 	
@@ -130,6 +140,23 @@ public class LexiqueFactory {
 			this.saveLexique();
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+	
+	private ILogListener logListener;
+	
+	public void setLogListener(ILogListener logListener_) {
+		this.logListener = logListener_;
+	}
+	public void log(String s) {
+		if(logListener != null){
+			logListener.log(s);
+		}
+		
+	}
+	public void logTitle(String s) {
+		if(logListener != null){
+			logListener.logTitle(s);
 		}
 	}
 	

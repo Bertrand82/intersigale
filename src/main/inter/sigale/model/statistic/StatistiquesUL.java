@@ -24,8 +24,17 @@ public class StatistiquesUL {
 	}
 
 	public String getResume() {
-		
-		return " Succes : ";
+		int nbSucces = 0;
+		int nbEchec =0;
+		int nbTotal = this.list.size();
+		for(StatistiquesItem stI :this.list){
+			if(stI.isSucces()){
+				nbSucces++;
+			}else {
+				nbEchec++;
+			}
+		}
+		return " Succes : "+nbSucces+" / "+nbTotal;
 	}
 
 	private int  geNbSucces() {

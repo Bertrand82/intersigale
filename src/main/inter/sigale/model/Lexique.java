@@ -77,7 +77,7 @@ public class Lexique implements Serializable {
 
 	@Override
 	public String toString() {
-		String s =  super.toString()+ "  size : "+listUniteLexicale.size();
+		String s = "  size : "+listUniteLexicale.size()+"  name : "+name;
 		for(Object ul : listUniteLexicale){
 			s += "\n "+ul;
 		}

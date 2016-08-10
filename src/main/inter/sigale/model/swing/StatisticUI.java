@@ -3,7 +3,11 @@ package inter.sigale.model.swing;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -19,16 +23,25 @@ public class StatisticUI implements ISwingable {
 	JLabel labelNbMotKO = new JLabel("2");
 	JLabel labelNbMots= new JLabel("2");
 
+	JButton buttonRefresh= new JButton("Refresh");
+
 
 	public StatisticUI() {
-		
-		panelGrid.add(getPanel("Nb Mots",labelNbMots));
-		panelGrid.add(getPanel("test OK",labelNbMtsOk));
+		buttonRefresh.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				refresh();
+				
+			}
+		});
+		panelGrid.add(getPanel("Nb Tests : ",labelNbMots));
+		panelGrid.add(getPanel("test OK ",labelNbMtsOk));
 		panelGrid.add(getPanel("test KO",labelNbMotKO));
+		panelGrid.add(getPanel("",buttonRefresh));
 		initStatistique();
 		panelGlobal.add(panelGrid);
 	}
-	private JPanel getPanel(String text, JLabel labelValue) {
+	private JPanel getPanel(String text, JComponent labelValue) {
 		JPanel panel = new JPanel(new BorderLayout());
 		JLabel label = new JLabel(text+" ");
 		panel.add(label,BorderLayout.CENTER);
@@ -52,5 +65,9 @@ public class StatisticUI implements ISwingable {
 	public void setBackground(Color bg, Color bg2) {
 		this.panelGlobal.setBackground(bg);
 		this.panelGrid.setBackground(bg);
+	}
+	
+	private void refresh() {
+		initStatistique();
 	}
 }
