@@ -86,11 +86,20 @@ public class LexiqueFactory implements ILogListener{
 	public void chooseLexique(File selectedFile) throws Exception{
 		FileInputStream is = new FileInputStream(selectedFile);
 		this.lexique = persister.read(Lexique.class, is);
+		this.lexique.setName(getNameFromFile(selectedFile));
 		log("lexique : "+lexique);
 		logTitle(this.lexique.getName());
 		fetchStatistique();
 	}
 	
+	private String getNameFromFile(File file) {
+		String name = file.getName();
+		int i = name.indexOf(".xml");
+		if (i > 0){
+			name = name.substring(0, i);
+		}
+		return name;
+	}
 	private void fetchStatistique() {
 		StatistiquesLexiqueFactory.getInstance().fetchStatistique();
 		

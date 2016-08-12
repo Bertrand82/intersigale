@@ -19,6 +19,7 @@ public class AdminUI implements ISwingable {
 	JPanel panelCommand = new JPanel();
 	private JButton buttonChooseLexique = new JButton("Choose Lexique");
 	private JButton buttonSaveLexique = new JButton("Save Lexique");
+	private JButton buttonSaveLexiqueIn = new JButton("Save Lexique in ...");
 	private JButton buttonCreateLexique = new JButton("Create Lexique");
 	private JFileChooser chooser = new JFileChooser();
 	public AdminUI() {
@@ -29,7 +30,13 @@ public class AdminUI implements ISwingable {
 				chooseLexique();
 			}
 		});
-
+	    buttonSaveLexiqueIn.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("SaveLexique action");
+				saveLexiqueIn();
+			}
+		});
 		buttonSaveLexique.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
@@ -49,6 +56,7 @@ public class AdminUI implements ISwingable {
 		panelCommand.setLayout(new BoxLayout(panelCommand, BoxLayout.PAGE_AXIS));
 		panelCommand.add(buttonChooseLexique);
 		panelCommand.add(buttonSaveLexique);
+		panelCommand.add(buttonSaveLexiqueIn);
 		panelCommand.add(buttonCreateLexique);
 		panelGlobal.add(panelCommand);
 	}
@@ -67,6 +75,23 @@ public class AdminUI implements ISwingable {
 			}
 		}
 	}
+	
+	private void saveLexiqueIn() {
+
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("xml", "xml");
+		chooser.setFileFilter(filter);
+		int returnVal = chooser.showOpenDialog(panelGlobal);
+		if (returnVal == JFileChooser.APPROVE_OPTION) {
+			System.out.println("You chose to open this file: " + chooser.getSelectedFile().getName());
+			try {
+				LexiqueFactory.getInstance().saveLexique(chooser.getSelectedFile());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+
 
 	private void saveLexique() {
 		try {

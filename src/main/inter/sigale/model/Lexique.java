@@ -32,7 +32,7 @@ public class Lexique implements Serializable {
 	
 	
 	
-	@Attribute
+	@Transient
 	private String name ="intersigale-default";
 	@ElementList
 	private List<UniteLexicale> listUniteLexicale = new ArrayList<UniteLexicale>();
@@ -93,7 +93,12 @@ public class Lexique implements Serializable {
 		}
 		return i;
 	}
+	
 	private StatistiquesLexique statistiquesLexique;
+	/**
+	 * 
+	 * @param statistiquesLexique
+	 */
 	public void setStatistiquesLexique(StatistiquesLexique statistiquesLexique) {
 		this.statistiquesLexique = statistiquesLexique;
 		updateStatistiques();
