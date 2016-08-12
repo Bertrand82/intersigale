@@ -1,0 +1,24 @@
+<statistiquesLexique>
+   <listStatistiqueUL class="java.util.ArrayList">
+      <statistiquesUL>
+         <uniteLexicaleId>aaa</uniteLexicaleId>
+         <list class="java.util.ArrayList"/>
+      </statistiquesUL>
+      <statistiquesUL>
+         <uniteLexicaleId>bbb</uniteLexicaleId>
+         <list class="java.util.ArrayList"/>
+      </statistiquesUL>
+      <statistiquesUL>
+         <uniteLexicaleId>ddd</uniteLexicaleId>
+         <list class="java.util.ArrayList"/>
+      </statistiquesUL>
+      <statistiquesUL>
+         <uniteLexicaleId>zzz</uniteLexicaleId>
+         <list class="java.util.ArrayList"/>
+      </statistiquesUL>
+      <statistiquesUL>
+         <uniteLexicaleId>eee</uniteLexicaleId>
+         <list class="java.util.ArrayList"/>
+      </statistiquesUL>
+   </listStatistiqueUL>
+</statistiquesLexique>

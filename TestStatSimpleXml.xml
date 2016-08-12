@@ -1,0 +1,12 @@
+<statistiquesLexique>
+   <listStatistiqueUL class="java.util.ArrayList">
+      <statistiquesUL>
+         <uniteLexicaleId>0</uniteLexicaleId>
+         <list class="java.util.ArrayList"/>
+      </statistiquesUL>
+      <statistiquesUL>
+         <uniteLexicaleId>0</uniteLexicaleId>
+         <list class="java.util.ArrayList"/>
+      </statistiquesUL>
+   </listStatistiqueUL>
+</statistiquesLexique>

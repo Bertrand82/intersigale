@@ -1,0 +1,20 @@
+<lexique name="intersigale-default">
+   <listUniteLexicale class="java.util.ArrayList">
+      <uniteLexicale>
+         <phrase_0>
+            <text>blablabllaaaa</text>
+         </phrase_0>
+         <phrase_1>
+            <text>Blobloblooooo</text>
+         </phrase_1>
+      </uniteLexicale>
+      <uniteLexicale>
+         <phrase_0>
+            <text>blablabllaaaa2</text>
+         </phrase_0>
+         <phrase_1>
+            <text>Blobloblooooo2</text>
+         </phrase_1>
+      </uniteLexicale>
+   </listUniteLexicale>
+</lexique>
