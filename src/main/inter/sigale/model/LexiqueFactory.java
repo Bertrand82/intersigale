@@ -52,6 +52,7 @@ public class LexiqueFactory implements ILogListener{
 					log("Exception "+e.getMessage());
 				}
 			}else{
+				lexique = getLexiqueDefault();
 				log("No file Lexique");
 			}
 			
@@ -72,7 +73,7 @@ public class LexiqueFactory implements ILogListener{
 	
 	
 	public void saveLexique(File selectedFile) throws Exception {
-		System.out.println("saveLexique 1 "+selectedFile.getPath());
+		System.out.println("saveLexique 1 "+selectedFile.getPath()+ "  Name :  "+getLexique().getName());
 		
 		// jaxbMarshaller.marshal(LexiqueFactory.getLexique(), file);
 		persister.write(getLexique(), System.out);
@@ -129,6 +130,7 @@ public class LexiqueFactory implements ILogListener{
 		if (name == null){
 			return null;
 		}
+		UtilInterSigale.saveProperties(KEY_LexiqueName, name);
 		return new File(name+"_lexique.xml");
 	}
 	/**
@@ -158,6 +160,7 @@ public class LexiqueFactory implements ILogListener{
 		this.logListener = logListener_;
 	}
 	public void log(String s) {
+		System.out.println(s);
 		if(logListener != null){
 			logListener.log(s);
 		}

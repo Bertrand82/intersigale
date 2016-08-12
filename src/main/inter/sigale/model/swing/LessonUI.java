@@ -10,6 +10,9 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
+import javax.swing.text.Document;
+import javax.swing.text.PlainDocument;
 
 import inter.sigale.model.Lexique;
 import inter.sigale.model.LexiqueFactory;
@@ -34,7 +37,7 @@ public class LessonUI implements ISwingable  {
 	JLabel labelCorrection = new JLabel(" ");
 	StatistiquePanel statistiquePanel = new StatistiquePanel();
 	public LessonUI() {
-		 LexiqueFactory.getInstance().getLexique();
+			 LexiqueFactory.getInstance().getLexique();
 		buttonValidResult.addActionListener(new ActionListener() {			
 			
 			public void actionPerformed(ActionEvent e) {
@@ -60,7 +63,7 @@ public class LessonUI implements ISwingable  {
 			}
 		});
 		
-		panelButtons.add(buttonValidResult);
+	    panelButtons.add(buttonValidResult);
 		panelButtons.add(buttonNext);
 		
 		panelCorrection.add(labelCorrection,BorderLayout.WEST);
@@ -72,6 +75,7 @@ public class LessonUI implements ISwingable  {
 		panelPhrases.add(labelRequest);
 		panelPhrases.add(textFieldResponse);
 		panelPhrases.add(panelCorrection);
+		
 		panelPhrases.add(panelButtons);
 		panelPhrases.add(labelStat);
 		panelPhrases.add(statistiquePanel);

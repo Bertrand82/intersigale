@@ -11,7 +11,11 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
+import javax.swing.text.Document;
+import javax.swing.text.PlainDocument;
 
 import inter.sigale.model.Lexique;
 import inter.sigale.model.LexiqueFactory;
@@ -145,8 +149,12 @@ public class ItemEditUI implements ISwingable {
 			this.textField_1.setText("");
 			this.labelStatistic.setText("");
 		} else {
-			this.textField_0.setText(item.getPhrase_0().getText());
+			this.textField_0.setText(item.getPhrase_0().getText());	
 			this.textField_1.setText(item.getPhrase_1().getText());
+			if (item.getPhrase_1().isShowText()){
+				 this.textField_1.setSelectionStart(item.getPhrase_1().getwStartVisible(0));
+				 this.textField_1.setSelectionEnd(item.getPhrase_1().getEndVisible(0));
+				}
 			this.labelStatistic.setText(item.getStatistiqueResume());
 		}
 	}
