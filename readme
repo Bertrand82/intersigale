@@ -21,6 +21,11 @@ git clone https://github.com/Bertrand82/intersigale
  ensuite dans Eclipse :
  Import Maven Project
 
+Pour verifier faire une modif dans fichier readme
+>git add readme
+>git commit
+>git push origin --force
+
 Les roles : Eleves, 
 
 1 - Comme eleve, je peux traduire des phrases
