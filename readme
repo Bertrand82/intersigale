@@ -13,6 +13,13 @@ git push origin --force
 Pour avoir la fenetre de commande: 
 Git Bash
 
+Pour importer le projet dans eclipse:
+
+1 - Clone le projet
+Dans git bash:
+git clone https://github.com/Bertrand82/intersigale
+ ensuite dans Eclipse :
+ Import Maven Project
 
 Les roles : Eleves, 
 
