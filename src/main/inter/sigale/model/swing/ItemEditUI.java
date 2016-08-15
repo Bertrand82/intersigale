@@ -31,6 +31,7 @@ public class ItemEditUI implements ISwingable {
 	JPanel panelAux = new JPanel();
 	JTextField textField_0 = new JTextField(20);
 	JTextField textField_1 = new JTextField(20);
+	JTextField textField_2 = new JTextField(20);
 	JButton buttonRecord = new JButton("Record");
 	JButton buttonNext = new JButton(">");
 	JButton buttonPrevious = new JButton("<");
@@ -41,6 +42,9 @@ public class ItemEditUI implements ISwingable {
 	public ItemEditUI() {
 		
 		super();
+		textField_1.setCaret(new CaretHighlight());
+		textField_2.setEditable(false);
+		
 		labelStatistic.setEditable(false);
 		this.panelGlobal.addComponentListener(new ComponentListener() {
 			
@@ -100,6 +104,8 @@ public class ItemEditUI implements ISwingable {
 		panelAux.add(textField_0);
 		panelAux.add(new JLabel("Answer"));
 		panelAux.add(textField_1);
+		panelAux.add(new JLabel("Appearance"));
+		panelAux.add(textField_2);
 		panelAux.add(new JLabel(""));
 		panelAux.add(buttonRecord);
 		panelAux.add(new JLabel("Stat:"));
@@ -134,32 +140,45 @@ public class ItemEditUI implements ISwingable {
 			displayItem();
 			displayLog();
 		}
+		
 	}
 	
 	private void init() {
 		System.out.println("componentShown -------------------");
 		this.item = LexiqueFactory.getInstance().getLexique().getUniteLexicaleCourante();
 		displayItem();
-		displayLog();
+	    displayLog();
 	}
 
 	private void displayItem() {
+		this.textField_1.setSelectionStart(0);
+		this.textField_1.setSelectionEnd(0);
 		if (this.item == null) {
 			this.textField_0.setText("");
 			this.textField_1.setText("");
+			this.textField_2.setText("");
 			this.labelStatistic.setText("");
 		} else {
 			this.textField_0.setText(item.getPhrase_0().getText());	
 			this.textField_1.setText(item.getPhrase_1().getText());
+			this.textField_2.setText(item.getPhrase_1().getTextVisible());
+			 int startSelected = item.getPhrase_1().getwStartVisible(0);
+			 int endSelected = item.getPhrase_1().getEndVisible(0);
+			 System.out.println("isShowText : "+item.getPhrase_1().isShowText()+" | startSelected "+startSelected+"  endSelected "+endSelected+" | listVvisible.size : "+item.getPhrase_1().getListVisible().size());
 			if (item.getPhrase_1().isShowText()){
-				 this.textField_1.setSelectionStart(item.getPhrase_1().getwStartVisible(0));
-				 this.textField_1.setSelectionEnd(item.getPhrase_1().getEndVisible(0));
-				}
+				 this.textField_1.setSelectionStart(startSelected);
+				 this.textField_1.setSelectionEnd(endSelected);
+				 this.textField_1.select(startSelected, endSelected);
+				 this.textField_1.requestFocus();
+			}
+			 System.out.println("isShowText : xxx | startSelected "+textField_1.getSelectionStart()+"  endSelected "+textField_1.getSelectionEnd()+" | text "+textField_1.getSelectedText());
+			 
 			this.labelStatistic.setText(item.getStatistiqueResume());
 		}
 	}
 
 	private void record() {
+		System.out.println("Record ");
 		if (this.item == null) {
 			this.item = new UniteLexicale(new Phrase(), new Phrase());
 			getLexique().getListUniteLexicale().add(item);
@@ -167,6 +186,13 @@ public class ItemEditUI implements ISwingable {
 		}
 		this.item.getPhrase_0().setText(textField_0.getText());
 		this.item.getPhrase_1().setText(textField_1.getText());
+		String selectedTExt = textField_1.getSelectedText();
+		System.out.println(" selectedTExt "+selectedTExt);
+		int selectionStart = textField_1.getSelectionStart();
+		int selectionEnd = textField_1.getSelectionEnd();
+		System.out.println(" selectedTExt SelectionStart "+textField_1.getSelectionStart());
+		System.out.println(" selectedTExt SelectionEnd "+textField_1.getSelectionEnd());
+		this.item.getPhrase_1().setSelected(selectionStart, selectionEnd);
 		LexiqueFactory.getInstance().saveItem(this.item);
 		
 	}

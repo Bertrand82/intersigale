@@ -131,7 +131,7 @@ public class LexiqueFactory implements ILogListener{
 			return null;
 		}
 		UtilInterSigale.saveProperties(KEY_LexiqueName, name);
-		return new File(name+"_lexique.xml");
+		return new File(name+".xml");
 	}
 	/**
 	 * 

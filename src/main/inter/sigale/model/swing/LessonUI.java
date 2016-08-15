@@ -51,6 +51,7 @@ public class LessonUI implements ISwingable  {
 			public void actionPerformed(ActionEvent e) {
 				nextPhrase();
 				textFieldResponse.requestFocusInWindow();
+				
 			}
 		});
 		
@@ -120,7 +121,6 @@ public class LessonUI implements ISwingable  {
 		displayUniteLexicaleCourante();
 		labelCorrection.setText(STR_VIDE);
 		displayResult(null," ");
-		this.textFieldResponse.setText("");
 		setButtonsEtat(true);
 		this.statistiquePanel.updateStat(null);
 	}
@@ -134,6 +134,8 @@ public class LessonUI implements ISwingable  {
 		UniteLexicale ul = getLexique().getUniteLexicaleCourante();
 		if (ul != null){
 			labelRequest.setText(ul.getPhrase_0().getText());
+			textFieldResponse.setText(ul.getPhrase_1().getTextVisible());
+			textFieldResponse.setCaretPosition(ul.getPhrase_1().getwStartVisible(0));
 		}
 	}
 	

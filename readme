@@ -10,7 +10,7 @@ git commit -m "comment blabla"
 git push origin --force
 
 
-Pour avoir la fenetre de commande: 
+Pour avoir la fenêtre de commande: 
 Git Bash
 
 Pour importer le projet dans eclipse:
@@ -26,7 +26,7 @@ Pour verifier faire une modif dans fichier readme
 >git commit
 >git push origin --force
 
-Les roles : Eleves, 
+Les roles : Elèves, Admin
 
 1 - Comme eleve, je peux traduire des phrases
 2 - Comme admin, je peux choisir un lexique
@@ -35,8 +35,8 @@ Les roles : Eleves,
 5 - Comme eleve, je vois mon score, mes statistiques
 6 - Comme eleve, je partage mes statistique sur facebook
 7 - Comme admin, je rentre une phrase en langue0 et j'obtiens la reponse sur google-translate
-8 - J'ai droit a un design sympa
+8 - J'ai droit à un design sympa
 9 - Je peux choisir mon look and feel
 10 -Comme el�ve, apr�s "OK", l'affichage reste 2 ou 3 s puis le suivant apparait
-11 -Comme testeur/developpeur, j'ai un lexique de qq centaines de mots
-12 -Comme User mes statistiques sont partag�
+11 -Comme testeur/développeur, j'ai un lexique de qq centaines de mots
+12 -Comme User mes statistiques sont partagés
