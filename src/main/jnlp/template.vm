@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp
+    spec="$jnlpspec"
+    codebase="$project.Url"
+    href="$outputFile">
+  <information>
+    <title>Intersigale</title>
+    <vendor>Guiral</vendor>
+    <homepage href="https://bertrand-guiral.appspot.com/"/>
+    <description>Tool for learning</description>
+
+    <offline-allowed/>
+
+  </information>
+
+  <security>
+     <all-permissions/>
+  </security>
+
+  <resources>
+    <j2se version="$j2seVersion"/>
+     $dependencies
+  </resources>
+  <application-desc main-class="$mainClass"/>
+</jnlp>
