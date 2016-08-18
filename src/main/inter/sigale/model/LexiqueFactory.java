@@ -64,8 +64,8 @@ public class LexiqueFactory implements ILogListener{
 	}
 	private static Lexique getLexiqueDefault() {
 		Lexique lexique = new Lexique();
-		lexique.add( new UniteLexicale( new Phrase("Qui a cr�� intersigale ?"),new Phrase("Bertrand")));
-		lexique.add( new UniteLexicale( new Phrase("Pourquoi il a fait �a ?"),new Phrase("Pour apprendre")));
+		lexique.add( new UniteLexicale( new Phrase("Qui a créé intersigale ?"),new Phrase("Bertrand")));
+		lexique.add( new UniteLexicale( new Phrase("Pourquoi il a fait ça ?"),new Phrase("Pour apprendre")));
 		lexique.add( new UniteLexicale( new Phrase("Pour apprendre quoi ?"),new Phrase("Tout")));
 		return lexique;
 	}
