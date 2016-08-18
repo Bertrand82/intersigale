@@ -9,7 +9,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<tomcat.version>7.0.6</tomcat.version>
-		<project.Url>bgPropertyUrl</project.Url> 
+		<project.Url>bgPropertyUrl</project.Url>
 	</properties>
 	<repositories>
 		<repository>
@@ -36,7 +36,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-									
+
 							<mainClass>inter.sigale.MainInterSigale</mainClass>
 						</manifest>
 					</archive>
@@ -133,6 +133,8 @@
 					<verbose>true</verbose>
 				</configuration>
 			</plugin>
+
+			
 		</plugins>
 	</build>
 	<dependencies>
@@ -143,16 +145,10 @@
 			<version>2.7.1</version>
 		</dependency>
 
-<!-- 		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-catalina</artifactId>
-			<version>${tomcat.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-coyote</artifactId>
-			<version>${tomcat.version}</version>
-		</dependency> -->
+		<!-- <dependency> <groupId>org.apache.tomcat</groupId> <artifactId>tomcat-catalina</artifactId> 
+			<version>${tomcat.version}</version> </dependency> <dependency> <groupId>org.apache.tomcat</groupId> 
+			<artifactId>tomcat-coyote</artifactId> <version>${tomcat.version}</version> 
+			</dependency> -->
 	</dependencies>
 
 </project>

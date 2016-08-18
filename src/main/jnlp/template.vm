@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <jnlp
     spec="$jnlpspec"
-    codebase="$project.Url"
+    codebase="http://sigale-1267.appspot.com/"
     href="$outputFile">
   <information>
     <title>Intersigale</title>
